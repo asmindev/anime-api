@@ -1,8 +1,10 @@
 import os
-import requests
-from typing import Any, Text, Dict
+from . import parser
+from typing import Any, Text, Dict, List
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
+import re
 
 load_dotenv()
 
@@ -17,8 +19,20 @@ class Details:
 
     def __get_content(self) -> BeautifulSoup:
         url = f"{self.url}/movie/{self.anime_slug}"
-        r = requests.get(url)
-        return BeautifulSoup(r.text, "html.parser")
+        return parser.parse_html(url)
+
+    def __get_eps(self, content) -> List:
+        list = []
+        urls = content.find_all("a", href=True)
+        for url in urls:
+            url = url.get("href")
+            url = urlparse(url)
+            get_id = re.findall(r"\d+", url.query)
+            slug = self.anime_slug
+            if get_id:
+                get_id = get_id[0]
+                list.append(dict(id=get_id, slug=slug))
+        return list
 
     def __parse_content(self) -> Dict[Any, Any]:
         thumbnails = {}
@@ -50,7 +64,6 @@ class Details:
                 if i[0].endswith(" "):
                     i[0] = i[0].strip()  # remove space
                 if " " in i[0]:
-                    print(i[0])
                     i[0] = i[0].replace(" ", "_")
                 if i[1].startswith(" "):
                     i[1] = i[1].strip()
@@ -60,6 +73,7 @@ class Details:
         return dict(
             title=title,
             info=info,
+            episode=self.__get_eps(content.find("ul", {"class": "daftarepi"})),
             thumbnails=thumbnails,
         )
 
