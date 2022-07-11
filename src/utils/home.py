@@ -57,7 +57,7 @@ class Home:
         return results
 
     def get(self, page=None) -> List[Dict]:
-        if page and page.isdigit() and page > 1:
+        if page and page.isdigit() and int(page) > 1:
             self.__page = page
         return self.__parse_content()
 
