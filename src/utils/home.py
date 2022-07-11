@@ -10,13 +10,18 @@ host = os.getenv("OTAKUDESU")
 
 class Home:
     def __init__(self) -> None:
+        self.__page = None
         pass
 
     def __repr__(self) -> Text:
         return f"Home anime from {host}"
 
     def __get_content(self) -> BeautifulSoup:
-        url = f"{host}/home"
+        if self.__page:
+
+            url = f"{host}/home/page/{self.__page}"
+        else:
+            url = f"{host}/home"
         r = requests.get(url)
         return BeautifulSoup(r.text, "html.parser")
 
@@ -51,7 +56,9 @@ class Home:
             )
         return results
 
-    def get(self) -> List[Dict]:
+    def get(self, page=None) -> List[Dict]:
+        if page and page.isdigit() and page > 1:
+            self.__page = page
         return self.__parse_content()
 
 
