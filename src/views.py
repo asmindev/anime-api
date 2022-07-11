@@ -8,7 +8,10 @@ parser = reqparse.RequestParser()
 
 class Home(Resource):
     def get(self):
-        return utils.Home().get()
+        parser.add_argument("page", type=str, required=False)
+        data = parser.parse_args()
+        page = data.get("page")
+        return utils.Home().get(page=page)
 
 
 class Search(Resource):
