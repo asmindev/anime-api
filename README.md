@@ -73,8 +73,8 @@ API anime dari scrap otakudesu yang tidak offcial
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `slug` | `string` | **Required**. anime slug |
-| `id` | `number` | **Required**. anime slug |
+| `slug` | `string` | **Required**. episode slug |
+| `id` | `number` | **Required**. episode id |
 
 
 ## Authors
