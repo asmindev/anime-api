@@ -23,5 +23,6 @@ api.add_resource(views.Detail, "/detail")
 api.add_resource(views.Ongoing, "/ongoing")
 api.add_resource(views.AnimeList, "/animelist")
 api.add_resource(views.MovieList, "/movielist")
+api.add_resource(views.GetVideo, "/getvideo")
 if __name__ == "__main__":
     app.run(debug=True, load_dotenv=True)

@@ -84,3 +84,28 @@ class MovieList(Resource):
         page = data["page"]
 
         return utils.MovieList().get(page=page)
+
+
+class GetVideo(Resource):
+    def get(self):
+        parser.add_argument(
+            "slug",
+            type=str,
+            # required=True,
+            location="args",
+        )
+        parser.add_argument(
+            "id",
+            type=str,
+            # required=True,
+            location="args",
+        )
+        data = parser.parse_args()
+        slug = data["slug"]
+        id = data["id"]
+        if slug is None:
+            return {"message": "slug is required"}
+        if id is None:
+            return {"message": "id is required"}
+        detail = utils.GetVideo().get(anime_slug=slug, id=id)
+        return detail

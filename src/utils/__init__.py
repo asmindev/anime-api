@@ -8,3 +8,4 @@ from .search import Search
 from .onGoing import OnGoing
 from .animeList import AnimeList
 from .movieList import MovieList
+from .getVideo import GetVideo
