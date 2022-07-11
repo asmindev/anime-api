@@ -25,4 +25,11 @@ api.add_resource(views.AnimeList, "/animelist")
 api.add_resource(views.MovieList, "/movielist")
 api.add_resource(views.GetVideo, "/getvideo")
 if __name__ == "__main__":
-    app.run(debug=True, load_dotenv=True)
+
+    # app.run(debug=True, load_dotenv=True)
+    # bind port heroku
+    app.run(
+        host="0.0.0.0",
+        load_dotenv=True,
+        port=int(os.getenv("PORT", 8080)),
+    )
