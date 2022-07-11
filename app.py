@@ -4,7 +4,12 @@ from flask_restful import Api, Resource
 from src import views, errors
 
 app = Flask(__name__)
+app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 api = Api(app, errors=errors.errors)
+settings = app.config.get("RESTFUL_JSON", {})
+settings.setdefault("indent", 2)
+settings.setdefault("sort_keys", True)
+app.config["RESTFUL_JSON"] = settings
 
 
 class HelloWorld(Resource):
@@ -32,4 +37,5 @@ if __name__ == "__main__":
         host="0.0.0.0",
         load_dotenv=True,
         port=int(os.getenv("PORT", 8080)),
+        debug=True,
     )
