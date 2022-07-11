@@ -8,7 +8,7 @@ parser = reqparse.RequestParser()
 
 class Home(Resource):
     def get(self):
-        parser.add_argument("page", type=str, required=False)
+        parser.add_argument("page", type=str, required=False, location="args")
         data = parser.parse_args()
         page = data.get("page")
         return utils.Home().get(page=page)
