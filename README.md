@@ -6,75 +6,19 @@ API anime dari scrap otakudesu yang tidak offcial
 
 ## API Reference
 
-#### Get Home
 
-```http
-  GET /home
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `page` | `number` | **Optional**. page number |
-
-#### Get anime by Search
-
-```http
-  GET /search
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `query`      | `string` | **Required**. title anime |
-
-#### Get Anime Ongoing
-
-```http
-  GET /ongoing
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `page` | `number` | **Optional**. page number |
-
-#### Get List Anime
-
-```http
-  GET /listanime
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `page` | `number` | **Optional**. page number |
-
-#### Get Movie List
-
-```http
-  GET /movielist
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `page` | `number` | **Optional**. page number |
-
-#### Get Movie List
-
-```http
-  GET /detail
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `slug` | `string` | **Required**. anime slug |
+| Path | Parameter | Type     | Required | Description                |
+| :-------- | :-------- | :-------- | :------- | :------------------------- |
+| [/home](https://otakudesu-restfull.herokuapp.com/home)| `page` | `number` | no | page number |
+| [/search](https://otakudesu-restfull.herokuapp.com/search)| `query` | `string` | yes | query |
+| [/ongoing](https://otakudesu-restfull.herokuapp.com/ongoing)  | `page` | `number` | no | page number |
+| [/listanime](https://otakudesu-restfull.herokuapp.com/listanime)| `page` | `number` | no | page number |
+| [/movielist](https://otakudesu-restfull.herokuapp.com/movielist)| `page` | `number` | no | page number |
+| [/detail](https://otakudesu-restfull.herokuapp.com/detail)| `slug` | `string` | yes | slug of anime |
+| [/detail](https://otakudesu-restfull.herokuapp.com/getvideo) | `slug` | `string` | yes | slug of episode |
+|  | `id` | `number` | yes | id of episode |
 
 
-```http
-  GET /getvideo
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `slug` | `string` | **Required**. episode slug |
-| `id` | `number` | **Required**. episode id |
 
 
 ## Authors
